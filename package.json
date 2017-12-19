@@ -1,0 +1,12 @@
+{
+  "name": "es6",
+  "version": "1.0.0",
+  "description": "ES6 capability test",
+  "main": "index.html",
+  "scripts": {
+    "lite": "lite-server --port 10001",
+    "start": "npm run lite"
+  },
+  "author": "",
+  "license": "ISC"
+}

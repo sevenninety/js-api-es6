@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>MapView async</title>
+    <style>
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/4.6/esri/css/main.css">
+
+    <script>
+        var dojoConfig = {
+            has: {
+                "esri-promise-compatibility": 1
+            }
+        };
+    </script>
+
+    <script src="http://js.arcgis.com/4.6/"></script>
+
+    <script>
+        window.require(["esri/Map", "esri/views/MapView", "dojo/domReady!"], (Map, MapView) => {
+            let map, view;
+
+            const init = async() => {
+                map = new Map({
+                    basemap: "streets"
+                });
+
+                view = new MapView({
+                    container: "viewDiv",
+                    map: map,
+                    zoom: 4,
+                    center: [15, 65] // longitude, latitude
+                });
+
+                await view.when();
+
+                console.log("view is ready");
+            }
+
+            init().then(() => {
+                console.log("ready");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="viewDiv"></div>
+</body>
+
+</html>
